@@ -141,19 +141,19 @@ jobs:
           set -euo pipefail
           xcodebuild -list -project "$PROJECT_PATH"
 
-      - name: Build for simulator without signing
+      - name: Build iOS app without signing
         run: |
           set -euo pipefail
-          log_path="$RUNNER_TEMP/simulator-build.log"
+          log_path="$RUNNER_TEMP/ios-build.log"
           if ! xcodebuild \
             -project "$PROJECT_PATH" \
             -scheme "$SCHEME" \
             -configuration Debug \
-            -destination 'generic/platform=iOS Simulator' \
+            -destination 'generic/platform=iOS' \
             CODE_SIGNING_ALLOWED=NO \
             PRODUCT_BUNDLE_IDENTIFIER="$BUNDLE_ID" \
             clean build 2>&1 | tee "$log_path"; then
-            echo "::group::Xcode simulator build errors"
+            echo "::group::Xcode iOS build errors"
             grep -E "error:|BUILD FAILED" "$log_path" | tail -n 80 || true
             echo "::endgroup::"
             grep -E "error:|BUILD FAILED" "$log_path" | tail -n 20 | while IFS= read -r line; do
