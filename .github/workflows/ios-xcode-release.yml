@@ -223,12 +223,22 @@ jobs:
       - name: Upload IPA to App Store Connect
         run: |
           set -euo pipefail
-          xcrun altool \
+          log_path="$RUNNER_TEMP/altool-upload.log"
+          if ! xcrun altool \
             --upload-app \
             --type ios \
             --file "$IPA_PATH" \
             --apiKey "$ASC_KEY_ID" \
-            --apiIssuer "$ASC_ISSUER_ID"
+            --apiIssuer "$ASC_ISSUER_ID" \
+            --verbose 2>&1 | tee "$log_path"; then
+            echo "::group::App Store Connect upload errors"
+            grep -Ei "error|failed|invalid|unable|unauthorized|authentication|provider|bundle|version|transport" "$log_path" | tail -n 120 || true
+            echo "::endgroup::"
+            grep -Ei "error|failed|invalid|unable|unauthorized|authentication|provider|bundle|version|transport" "$log_path" | tail -n 30 | while IFS= read -r line; do
+              echo "::error::$line"
+            done
+            exit 1
+          fi
 
       - name: Upload IPA artifact
         if: always()
