@@ -47,21 +47,39 @@ jobs:
       - name: Select Xcode 26
         run: |
           set -euo pipefail
-          xcode_app=""
-          for candidate in /Applications/Xcode_26.app /Applications/Xcode_26.[0-9]*.app /Applications/Xcode_26_Release_Candidate.app; do
-            if [[ -d "$candidate" && "$candidate" != *beta* && "$candidate" != *Beta* ]]; then
-              xcode_app="$candidate"
-              break
-            fi
-          done
-          if [[ -z "$xcode_app" ]]; then
-            for candidate in /Applications/Xcode_26*.app; do
-              if [[ -d "$candidate" ]]; then
-                xcode_app="$candidate"
-                break
-              fi
-            done
-          fi
+          echo "Installed Xcode apps:"
+          ls -1d /Applications/Xcode*.app || true
+          xcode_app="$(python3 <<'PY'
+          from pathlib import Path
+          import re
+
+          def version_key(path):
+              name = path.name
+              match = re.match(r"Xcode_26(?:[._](\d+(?:[._]\d+)*))?\.app$", name)
+              if not match:
+                  return None
+              version = match.group(1)
+              if not version:
+                  return (-1,)
+              return tuple(int(part) for part in re.split(r"[._]", version))
+
+          stable = []
+          fallback = []
+          for path in Path("/Applications").glob("Xcode_26*.app"):
+              lowered = path.name.lower()
+              key = version_key(path)
+              if key is None:
+                  fallback.append(((-1,), path))
+              elif "beta" not in lowered and "release_candidate" not in lowered:
+                  stable.append((key, path))
+              else:
+                  fallback.append((key, path))
+
+          candidates = stable or fallback
+          if candidates:
+              print(max(candidates, key=lambda item: item[0])[1])
+          PY
+          )"
           if [[ -z "$xcode_app" ]]; then
             echo "::error::Xcode 26 is required for App Store Connect uploads. Installed Xcode apps:"
             ls -1d /Applications/Xcode*.app || true
