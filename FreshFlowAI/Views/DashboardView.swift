@@ -17,6 +17,10 @@ struct DashboardView: View {
         inventory.reduce(0) { $0 + $1.estimatedValue }
     }
 
+    private var inventoryValueLabel: String {
+        "GBP \(Int(inventoryValue.rounded()))"
+    }
+
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
@@ -27,7 +31,7 @@ struct DashboardView: View {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 14) {
                     MetricCard(title: "Expiring soon", value: "\(expiringSoon.count)", caption: "Use these first", systemImage: "clock.fill", tint: FreshFlowTheme.lemon)
                     MetricCard(title: "Money saved", value: "GBP 42", caption: "Estimated this month", systemImage: "sterlingsign.circle.fill", tint: FreshFlowTheme.sage)
-                    MetricCard(title: "Inventory value", value: "GBP \(inventoryValue, specifier: "%.0f")", caption: "Tracked at home", systemImage: "refrigerator.fill", tint: FreshFlowTheme.sky)
+                    MetricCard(title: "Inventory value", value: inventoryValueLabel, caption: "Tracked at home", systemImage: "refrigerator.fill", tint: FreshFlowTheme.sky)
                     MetricCard(title: "Subscription", value: "Free", caption: "Upgrade for unlimited AI", systemImage: "sparkles", tint: FreshFlowTheme.clay)
                 }
 
