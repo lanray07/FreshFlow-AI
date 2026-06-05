@@ -118,20 +118,30 @@ jobs:
       - name: Build for simulator without signing
         run: |
           set -euo pipefail
-          xcodebuild \
+          log_path="$RUNNER_TEMP/simulator-build.log"
+          if ! xcodebuild \
             -project "$PROJECT_PATH" \
             -scheme "$SCHEME" \
             -configuration Debug \
             -destination 'generic/platform=iOS Simulator' \
             CODE_SIGNING_ALLOWED=NO \
             PRODUCT_BUNDLE_IDENTIFIER="$BUNDLE_ID" \
-            clean build
+            clean build 2>&1 | tee "$log_path"; then
+            echo "::group::Xcode simulator build errors"
+            grep -E "error:|BUILD FAILED" "$log_path" | tail -n 80 || true
+            echo "::endgroup::"
+            grep -E "error:|BUILD FAILED" "$log_path" | tail -n 20 | while IFS= read -r line; do
+              echo "::error::$line"
+            done
+            exit 65
+          fi
 
       - name: Archive iOS app
         run: |
           set -euo pipefail
           archive_path="$RUNNER_TEMP/${APP_NAME}.xcarchive"
-          xcodebuild \
+          log_path="$RUNNER_TEMP/archive.log"
+          if ! xcodebuild \
             -project "$PROJECT_PATH" \
             -scheme "$SCHEME" \
             -configuration "$CONFIGURATION" \
@@ -143,7 +153,15 @@ jobs:
             -authenticationKeyPath "${{ steps.asc_key.outputs.path }}" \
             -authenticationKeyID "$ASC_KEY_ID" \
             -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
-            clean archive
+            clean archive 2>&1 | tee "$log_path"; then
+            echo "::group::Xcode archive errors"
+            grep -E "error:|BUILD FAILED|ARCHIVE FAILED" "$log_path" | tail -n 80 || true
+            echo "::endgroup::"
+            grep -E "error:|BUILD FAILED|ARCHIVE FAILED" "$log_path" | tail -n 20 | while IFS= read -r line; do
+              echo "::error::$line"
+            done
+            exit 65
+          fi
           echo "ARCHIVE_PATH=$archive_path" >> "$GITHUB_ENV"
 
       - name: Create export options

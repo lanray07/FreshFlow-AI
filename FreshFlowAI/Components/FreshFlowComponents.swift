@@ -61,9 +61,9 @@ struct QuickActionButton: View {
 
 struct SectionHeader: View {
     var title: String
-    var subtitle: String?
-    var actionTitle: String?
-    var action: (() -> Void)?
+    var subtitle: String? = nil
+    var actionTitle: String? = nil
+    var action: (() -> Void)? = nil
 
     var body: some View {
         HStack(alignment: .firstTextBaseline) {

@@ -1,7 +1,7 @@
 import Foundation
 import SwiftData
 
-enum FoodCategory: String, CaseIterable, Codable, Identifiable {
+enum FoodCategory: String, CaseIterable, Codable, Identifiable, Hashable {
     case produce = "Produce"
     case dairy = "Dairy"
     case meat = "Meat"
@@ -14,7 +14,7 @@ enum FoodCategory: String, CaseIterable, Codable, Identifiable {
     var id: String { rawValue }
 }
 
-enum StorageLocation: String, CaseIterable, Codable, Identifiable {
+enum StorageLocation: String, CaseIterable, Codable, Identifiable, Hashable {
     case fridge = "Fridge"
     case freezer = "Freezer"
     case pantry = "Pantry"
@@ -23,7 +23,7 @@ enum StorageLocation: String, CaseIterable, Codable, Identifiable {
     var id: String { rawValue }
 }
 
-enum FreshnessStatus: String, CaseIterable, Codable {
+enum FreshnessStatus: String, CaseIterable, Codable, Hashable {
     case eatSoon = "Eat Soon"
     case safe = "Fresh"
     case longShelfLife = "Long Shelf Life"
@@ -39,14 +39,14 @@ enum FreshnessStatus: String, CaseIterable, Codable {
     }
 }
 
-enum SubscriptionPlan: String, CaseIterable, Codable {
+enum SubscriptionPlan: String, CaseIterable, Codable, Hashable {
     case free = "Free"
     case premiumMonthly = "Premium Monthly"
     case premiumYearly = "Premium Yearly"
     case familyMonthly = "Family Monthly"
 }
 
-enum VoiceIntentType: String, CaseIterable, Codable, Identifiable {
+enum VoiceIntentType: String, CaseIterable, Codable, Identifiable, Hashable {
     case addInventoryItems
     case updateInventoryItem
     case removeInventoryItem
@@ -76,7 +76,7 @@ enum VoiceIntentType: String, CaseIterable, Codable, Identifiable {
     }
 }
 
-enum VoiceSourceScreen: String, CaseIterable, Identifiable, Codable {
+enum VoiceSourceScreen: String, CaseIterable, Identifiable, Codable, Hashable {
     case dashboard = "Dashboard"
     case inventory = "Inventory"
     case scanner = "Scanner"

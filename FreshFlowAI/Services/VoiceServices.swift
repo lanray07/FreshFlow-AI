@@ -204,11 +204,11 @@ struct VoiceCommandParserService {
 
         return candidates.map { item in
             let category: FoodCategory
-            if ["milk", "yogurt", "cheese"].contains(where: item.contains) {
+            if ["milk", "yogurt", "cheese"].contains(where: { item.contains($0) }) {
                 category = .dairy
-            } else if ["rice", "pasta", "sauce"].contains(where: item.contains) {
+            } else if ["rice", "pasta", "sauce"].contains(where: { item.contains($0) }) {
                 category = .pantry
-            } else if ["lasagna", "leftover"].contains(where: item.contains) {
+            } else if ["lasagna", "leftover"].contains(where: { item.contains($0) }) {
                 category = .leftovers
             } else {
                 category = .produce
