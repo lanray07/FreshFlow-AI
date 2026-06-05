@@ -149,7 +149,9 @@ jobs:
             -archivePath "$archive_path" \
             DEVELOPMENT_TEAM="$APPLE_TEAM_ID" \
             PRODUCT_BUNDLE_IDENTIFIER="$BUNDLE_ID" \
-            CODE_SIGN_IDENTITY="Apple Distribution" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
             -allowProvisioningUpdates \
             -authenticationKeyPath "${{ steps.asc_key.outputs.path }}" \
             -authenticationKeyID "$ASC_KEY_ID" \
