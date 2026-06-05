@@ -1,0 +1,431 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B00100000000000000000001 /* FreshFlowAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000001 /* FreshFlowAIApp.swift */; };
+		B00100000000000000000002 /* FreshFlowTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000002 /* FreshFlowTheme.swift */; };
+		B00100000000000000000003 /* FreshFlowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000003 /* FreshFlowModels.swift */; };
+		B00100000000000000000004 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000004 /* AppViewModel.swift */; };
+		B00100000000000000000005 /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000005 /* AIService.swift */; };
+		B00100000000000000000006 /* VoiceServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000006 /* VoiceServices.swift */; };
+		B00100000000000000000007 /* PlatformServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000007 /* PlatformServices.swift */; };
+		B00100000000000000000008 /* FreshFlowComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000008 /* FreshFlowComponents.swift */; };
+		B00100000000000000000009 /* VoiceComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000009 /* VoiceComponents.swift */; };
+		B00100000000000000000010 /* FoodPhotographyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000010 /* FoodPhotographyPlaceholder.swift */; };
+		B00100000000000000000011 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000011 /* AppRootView.swift */; };
+		B00100000000000000000012 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000012 /* OnboardingView.swift */; };
+		B00100000000000000000013 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000013 /* DashboardView.swift */; };
+		B00100000000000000000014 /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000014 /* InventoryView.swift */; };
+		B00100000000000000000015 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000015 /* ScannerView.swift */; };
+		B00100000000000000000016 /* CameraScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000016 /* CameraScannerView.swift */; };
+		B00100000000000000000017 /* ReceiptScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000017 /* ReceiptScannerView.swift */; };
+		B00100000000000000000018 /* RecipeAndMealViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000018 /* RecipeAndMealViews.swift */; };
+		B00100000000000000000019 /* WasteSavingsGroceryViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000019 /* WasteSavingsGroceryViews.swift */; };
+		B00100000000000000000020 /* SettingsPaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000020 /* SettingsPaywallView.swift */; };
+		B00100000000000000000021 /* WidgetPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000021 /* WidgetPlaceholderView.swift */; };
+		B00100000000000000000022 /* WatchPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000022 /* WatchPlaceholderView.swift */; };
+		B00100000000000000000023 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000023 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A00100000000000000000001 /* FreshFlowAIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreshFlowAIApp.swift; sourceTree = "<group>"; };
+		A00100000000000000000002 /* FreshFlowTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreshFlowTheme.swift; sourceTree = "<group>"; };
+		A00100000000000000000003 /* FreshFlowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreshFlowModels.swift; sourceTree = "<group>"; };
+		A00100000000000000000004 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		A00100000000000000000005 /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
+		A00100000000000000000006 /* VoiceServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceServices.swift; sourceTree = "<group>"; };
+		A00100000000000000000007 /* PlatformServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformServices.swift; sourceTree = "<group>"; };
+		A00100000000000000000008 /* FreshFlowComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreshFlowComponents.swift; sourceTree = "<group>"; };
+		A00100000000000000000009 /* VoiceComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceComponents.swift; sourceTree = "<group>"; };
+		A00100000000000000000010 /* FoodPhotographyPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPhotographyPlaceholder.swift; sourceTree = "<group>"; };
+		A00100000000000000000011 /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
+		A00100000000000000000012 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		A00100000000000000000013 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		A00100000000000000000014 /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
+		A00100000000000000000015 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		A00100000000000000000016 /* CameraScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScannerView.swift; sourceTree = "<group>"; };
+		A00100000000000000000017 /* ReceiptScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptScannerView.swift; sourceTree = "<group>"; };
+		A00100000000000000000018 /* RecipeAndMealViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAndMealViews.swift; sourceTree = "<group>"; };
+		A00100000000000000000019 /* WasteSavingsGroceryViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasteSavingsGroceryViews.swift; sourceTree = "<group>"; };
+		A00100000000000000000020 /* SettingsPaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPaywallView.swift; sourceTree = "<group>"; };
+		A00100000000000000000021 /* WidgetPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPlaceholderView.swift; sourceTree = "<group>"; };
+		A00100000000000000000022 /* WatchPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchPlaceholderView.swift; sourceTree = "<group>"; };
+		A00100000000000000000023 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		PROD00000000000000000001 /* FreshFlowAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreshFlowAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FRAMEWORKS000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		GROUP00000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				GROUP00000000000000000003 /* FreshFlowAI */,
+				GROUP00000000000000000002 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		GROUP00000000000000000002 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				PROD00000000000000000001 /* FreshFlowAI.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		GROUP00000000000000000003 /* FreshFlowAI */ = {
+			isa = PBXGroup;
+			children = (
+				A00100000000000000000001 /* FreshFlowAIApp.swift */,
+				GROUP00000000000000000004 /* Models */,
+				GROUP00000000000000000005 /* ViewModels */,
+				GROUP00000000000000000006 /* Services */,
+				GROUP00000000000000000007 /* Components */,
+				GROUP00000000000000000008 /* Views */,
+				GROUP00000000000000000009 /* CameraPlaceholder */,
+				GROUP00000000000000000010 /* OCRPlaceholder */,
+				GROUP00000000000000000011 /* WidgetsPlaceholder */,
+				GROUP00000000000000000012 /* WatchPlaceholder */,
+				GROUP00000000000000000013 /* Resources */,
+				GROUP00000000000000000014 /* FoodAssetsPlaceholder */,
+			);
+			path = FreshFlowAI;
+			sourceTree = "<group>";
+		};
+		GROUP00000000000000000004 /* Models */ = {
+			isa = PBXGroup;
+			children = (A00100000000000000000003 /* FreshFlowModels.swift */);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		GROUP00000000000000000005 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (A00100000000000000000004 /* AppViewModel.swift */);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		GROUP00000000000000000006 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A00100000000000000000005 /* AIService.swift */,
+				A00100000000000000000006 /* VoiceServices.swift */,
+				A00100000000000000000007 /* PlatformServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		GROUP00000000000000000007 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A00100000000000000000008 /* FreshFlowComponents.swift */,
+				A00100000000000000000009 /* VoiceComponents.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		GROUP00000000000000000008 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A00100000000000000000011 /* AppRootView.swift */,
+				A00100000000000000000012 /* OnboardingView.swift */,
+				A00100000000000000000013 /* DashboardView.swift */,
+				A00100000000000000000014 /* InventoryView.swift */,
+				A00100000000000000000015 /* ScannerView.swift */,
+				A00100000000000000000018 /* RecipeAndMealViews.swift */,
+				A00100000000000000000019 /* WasteSavingsGroceryViews.swift */,
+				A00100000000000000000020 /* SettingsPaywallView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		GROUP00000000000000000009 /* CameraPlaceholder */ = {
+			isa = PBXGroup;
+			children = (A00100000000000000000016 /* CameraScannerView.swift */);
+			path = CameraPlaceholder;
+			sourceTree = "<group>";
+		};
+		GROUP00000000000000000010 /* OCRPlaceholder */ = {
+			isa = PBXGroup;
+			children = (A00100000000000000000017 /* ReceiptScannerView.swift */);
+			path = OCRPlaceholder;
+			sourceTree = "<group>";
+		};
+		GROUP00000000000000000011 /* WidgetsPlaceholder */ = {
+			isa = PBXGroup;
+			children = (A00100000000000000000021 /* WidgetPlaceholderView.swift */);
+			path = WidgetsPlaceholder;
+			sourceTree = "<group>";
+		};
+		GROUP00000000000000000012 /* WatchPlaceholder */ = {
+			isa = PBXGroup;
+			children = (A00100000000000000000022 /* WatchPlaceholderView.swift */);
+			path = WatchPlaceholder;
+			sourceTree = "<group>";
+		};
+		GROUP00000000000000000013 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A00100000000000000000002 /* FreshFlowTheme.swift */,
+				A00100000000000000000023 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		GROUP00000000000000000014 /* FoodAssetsPlaceholder */ = {
+			isa = PBXGroup;
+			children = (A00100000000000000000010 /* FoodPhotographyPlaceholder.swift */);
+			path = FoodAssetsPlaceholder;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		TARGET000000000000000001 /* FreshFlowAI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CONFIGLIST0000000002 /* Build configuration list for PBXNativeTarget "FreshFlowAI" */;
+			buildPhases = (
+				SOURCES00000000000000001 /* Sources */,
+				FRAMEWORKS000000000000001 /* Frameworks */,
+				RESOURCES000000000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FreshFlowAI;
+			productName = FreshFlowAI;
+			productReference = PROD00000000000000000001 /* FreshFlowAI.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		PROJECT000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					TARGET000000000000000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = CONFIGLIST0000000001 /* Build configuration list for PBXProject "FreshFlowAI" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = GROUP00000000000000000001;
+			productRefGroup = GROUP00000000000000000002 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				TARGET000000000000000001 /* FreshFlowAI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		RESOURCES000000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B00100000000000000000023 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		SOURCES00000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B00100000000000000000001 /* FreshFlowAIApp.swift in Sources */,
+				B00100000000000000000002 /* FreshFlowTheme.swift in Sources */,
+				B00100000000000000000003 /* FreshFlowModels.swift in Sources */,
+				B00100000000000000000004 /* AppViewModel.swift in Sources */,
+				B00100000000000000000005 /* AIService.swift in Sources */,
+				B00100000000000000000006 /* VoiceServices.swift in Sources */,
+				B00100000000000000000007 /* PlatformServices.swift in Sources */,
+				B00100000000000000000008 /* FreshFlowComponents.swift in Sources */,
+				B00100000000000000000009 /* VoiceComponents.swift in Sources */,
+				B00100000000000000000010 /* FoodPhotographyPlaceholder.swift in Sources */,
+				B00100000000000000000011 /* AppRootView.swift in Sources */,
+				B00100000000000000000012 /* OnboardingView.swift in Sources */,
+				B00100000000000000000013 /* DashboardView.swift in Sources */,
+				B00100000000000000000014 /* InventoryView.swift in Sources */,
+				B00100000000000000000015 /* ScannerView.swift in Sources */,
+				B00100000000000000000016 /* CameraScannerView.swift in Sources */,
+				B00100000000000000000017 /* ReceiptScannerView.swift in Sources */,
+				B00100000000000000000018 /* RecipeAndMealViews.swift in Sources */,
+				B00100000000000000000019 /* WasteSavingsGroceryViews.swift in Sources */,
+				B00100000000000000000020 /* SettingsPaywallView.swift in Sources */,
+				B00100000000000000000021 /* WidgetPlaceholderView.swift in Sources */,
+				B00100000000000000000022 /* WatchPlaceholderView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CONFIG000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("DEBUG=1", "$(inherited)");
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CONFIG000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CONFIG000000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "FreshFlow AI";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
+				INFOPLIST_KEY_NSCameraUsageDescription = "FreshFlow AI uses the camera to scan fridge, pantry, and receipt items.";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "FreshFlow AI uses the microphone only while you actively record a voice command.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "FreshFlow AI uses speech recognition to turn optional voice commands into reviewed inventory and meal planning actions.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.freshflowai.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CONFIG000000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "FreshFlow AI";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
+				INFOPLIST_KEY_NSCameraUsageDescription = "FreshFlow AI uses the camera to scan fridge, pantry, and receipt items.";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "FreshFlow AI uses the microphone only while you actively record a voice command.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "FreshFlow AI uses speech recognition to turn optional voice commands into reviewed inventory and meal planning actions.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.freshflowai.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CONFIGLIST0000000001 /* Build configuration list for PBXProject "FreshFlowAI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CONFIG000000000000000001 /* Debug */,
+				CONFIG000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CONFIGLIST0000000002 /* Build configuration list for PBXNativeTarget "FreshFlowAI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CONFIG000000000000000003 /* Debug */,
+				CONFIG000000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = PROJECT000000000000000001 /* Project object */;
+}
