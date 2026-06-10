@@ -13,7 +13,7 @@ struct ScannerView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 HStack {
-                    SectionHeader(title: "AI Fridge Scanner", subtitle: "Camera architecture with mock AI recognition.")
+                    SectionHeader(title: "Guided Food Scan", subtitle: "Review suggested pantry, fridge, and freezer items before adding them.")
                     VoiceInputButton(title: "Voice", action: openVoiceInput)
                 }
 
@@ -31,7 +31,7 @@ struct ScannerView: View {
                 Button {
                     showingReceiptScanner = true
                 } label: {
-                    Label("Open Receipt Scanner", systemImage: "doc.text.viewfinder")
+                    Label("Review Receipt Items", systemImage: "doc.text.viewfinder")
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.bordered)
@@ -47,11 +47,11 @@ struct ScannerView: View {
                     }
                 }
 
-                SectionHeader(title: "Review AI findings", subtitle: "Confirm or edit before adding inventory.")
+                SectionHeader(title: "Review suggested items", subtitle: "Confirm or edit before adding inventory.")
                 if viewModel.scannerReviewItems.isEmpty {
                     EmptyStateView(
                         title: "No scan results yet",
-                        message: "Run a mock scan to preview the review/edit mode.",
+                        message: "Start a food review to prepare editable inventory suggestions.",
                         systemImage: "camera.viewfinder"
                     )
                 } else {

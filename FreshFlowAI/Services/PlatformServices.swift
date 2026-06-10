@@ -13,10 +13,10 @@ final class SubscriptionStore {
     var isLoading = false
     var errorMessage: String?
 
-    private let productIDs = [
-        "freshflow.premium.monthly",
-        "freshflow.premium.yearly",
-        "freshflow.family.monthly"
+    private let productIDByPlan: [SubscriptionPlan: String] = [
+        .premiumMonthly: "freshflow.premium.monthly",
+        .premiumYearly: "freshflow.premium.yearly",
+        .familyMonthly: "freshflow.family.monthly"
     ]
 
     func loadProducts() async {
@@ -24,22 +24,79 @@ final class SubscriptionStore {
         defer { isLoading = false }
 
         do {
-            products = try await Product.products(for: productIDs)
+            products = try await Product.products(for: Array(productIDByPlan.values))
+            products.sort { $0.displayName < $1.displayName }
+            errorMessage = nil
         } catch {
-            errorMessage = "StoreKit products are placeholders until App Store Connect products are configured."
+            errorMessage = "Subscriptions are temporarily unavailable. Please try again later."
+        }
+    }
+
+    func displayPrice(for plan: SubscriptionPlan, fallback: String) -> String {
+        product(for: plan)?.displayPrice ?? fallback
+    }
+
+    func purchase(_ plan: SubscriptionPlan) async {
+        guard let product = product(for: plan) else {
+            errorMessage = "This subscription is not available yet. Please try again later."
+            return
+        }
+
+        isLoading = true
+        defer { isLoading = false }
+
+        do {
+            let result = try await product.purchase()
+            switch result {
+            case .success(let verification):
+                switch verification {
+                case .verified(let transaction):
+                    currentPlan = subscriptionPlan(for: transaction.productID)
+                    await transaction.finish()
+                    errorMessage = nil
+                case .unverified(_, _):
+                    errorMessage = "Apple could not verify this purchase."
+                }
+            case .pending:
+                errorMessage = "Purchase is pending approval."
+            case .userCancelled:
+                break
+            @unknown default:
+                errorMessage = "Purchase could not be completed."
+            }
+        } catch {
+            errorMessage = "Purchase could not be completed."
+        }
+    }
+
+    func restorePurchases() async {
+        isLoading = true
+        defer { isLoading = false }
+
+        do {
+            try await AppStore.sync()
+            await refreshEntitlements()
+            errorMessage = nil
+        } catch {
+            errorMessage = "Purchases could not be restored."
         }
     }
 
     func refreshEntitlements() async {
         for await result in Transaction.currentEntitlements {
             if case let .verified(transaction) = result {
-                if transaction.productID.contains("family") {
-                    currentPlan = .familyMonthly
-                } else if transaction.productID.contains("premium") {
-                    currentPlan = .premiumMonthly
-                }
+                currentPlan = subscriptionPlan(for: transaction.productID)
             }
         }
+    }
+
+    private func product(for plan: SubscriptionPlan) -> Product? {
+        guard let productID = productIDByPlan[plan] else { return nil }
+        return products.first { $0.id == productID }
+    }
+
+    private func subscriptionPlan(for productID: String) -> SubscriptionPlan {
+        productIDByPlan.first { $0.value == productID }?.key ?? .free
     }
 }
 

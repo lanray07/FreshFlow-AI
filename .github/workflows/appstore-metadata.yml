@@ -1,0 +1,82 @@
+name: App Store Metadata
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/appstore-metadata.yml"
+      - "fastlane/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: appstore-metadata-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  APP_VERSION: "1.0"
+  BUNDLE_ID: com.freshflowai.app
+
+jobs:
+  upload-metadata:
+    name: Upload metadata and screenshots
+    runs-on: macos-26
+    timeout-minutes: 45
+    env:
+      ASC_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID || secrets.APP_STORE_CONNECT_API_KEY_ID || secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID || secrets.APP_STORE_CONNECT_API_ISSUER_ID || secrets.ASC_ISSUER_ID }}
+      ASC_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY || secrets.APP_STORE_CONNECT_API_PRIVATE_KEY || secrets.APP_STORE_CONNECT_API_KEY || secrets.APPSTORE_CONNECT_PRIVATE_KEY || secrets.APPSTORE_API_PRIVATE_KEY || secrets.APPSTORE_API_KEY || secrets.ASC_PRIVATE_KEY || secrets.ASC_API_PRIVATE_KEY || secrets.ASC_API_KEY || secrets.API_PRIVATE_KEY || secrets.P8_PRIVATE_KEY }}
+      ASC_PRIVATE_KEY_BASE64: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY_BASE64 || secrets.APP_STORE_CONNECT_API_PRIVATE_KEY_BASE64 || secrets.APP_STORE_CONNECT_API_KEY_BASE64 || secrets.APPSTORE_CONNECT_PRIVATE_KEY_BASE64 || secrets.APPSTORE_API_PRIVATE_KEY_BASE64 || secrets.APPSTORE_API_KEY_BASE64 || secrets.ASC_PRIVATE_KEY_BASE64 || secrets.ASC_API_PRIVATE_KEY_BASE64 || secrets.ASC_API_KEY_BASE64 || secrets.P8_PRIVATE_KEY_BASE64 }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate App Store Connect secrets
+        run: |
+          set -euo pipefail
+          missing=0
+          for name in ASC_KEY_ID ASC_ISSUER_ID; do
+            if [[ -z "${!name:-}" ]]; then
+              echo "::error::$name is missing. Add it as a GitHub secret or one of the supported aliases in this workflow."
+              missing=1
+            fi
+          done
+          if [[ -z "${ASC_PRIVATE_KEY:-}" && -z "${ASC_PRIVATE_KEY_BASE64:-}" ]]; then
+            echo "::error::App Store Connect private key is missing."
+            missing=1
+          fi
+          if [[ "$missing" -ne 0 ]]; then
+            exit 1
+          fi
+
+      - name: Write App Store Connect API key
+        run: |
+          set -euo pipefail
+          key_dir="$RUNNER_TEMP/private_keys"
+          key_path="$key_dir/AuthKey_${ASC_KEY_ID}.p8"
+          mkdir -p "$key_dir"
+          if [[ -n "${ASC_PRIVATE_KEY_BASE64:-}" ]]; then
+            printf '%s' "$ASC_PRIVATE_KEY_BASE64" | base64 --decode > "$key_path"
+          else
+            printf '%s' "$ASC_PRIVATE_KEY" | sed 's/\\n/\n/g' > "$key_path"
+          fi
+          chmod 600 "$key_path"
+          if ! grep -q "PRIVATE KEY" "$key_path"; then
+            echo "::error::The resolved App Store Connect private key does not look like a .p8 private key."
+            exit 1
+          fi
+          echo "ASC_KEY_PATH=$key_path" >> "$GITHUB_ENV"
+
+      - name: Install fastlane
+        run: |
+          set -euo pipefail
+          bundle install
+
+      - name: Upload metadata and screenshots
+        run: |
+          set -euo pipefail
+          bundle exec fastlane ios metadata

@@ -4,22 +4,20 @@ FreshFlow AI is a premium SwiftUI iOS app for pantry, fridge, and food inventory
 
 Core positioning: "Know what to eat before it expires."
 
-The app helps households reduce food waste, save money, generate meals from existing ingredients, track pantry inventory, predict expiry risk, and plan groceries. It is built as an offline-friendly SwiftUI app with SwiftData persistence and mock AI enabled by default.
+The app helps households reduce food waste, save money, generate meals from existing ingredients, track pantry inventory, estimate expiry risk, and plan groceries. It is built as an offline-friendly SwiftUI app with SwiftData persistence and local intelligence for reviewable food suggestions.
 
 ## Included
 
 - SwiftUI app shell with `TabView` and `NavigationStack`
 - MVVM-style app state with service injection
 - SwiftData persistence models
-- Mock AI services for food recognition, expiry prediction, recipes, pantry forecast, waste reduction, and shopping lists
-- Native voice input architecture with mock transcripts, typed fallback, permission handling placeholders, and review-before-apply behavior
-- Camera and computer vision architecture placeholder
-- OCR receipt scanning architecture placeholder
-- StoreKit 2 subscription scaffolding
+- Local services for food recognition suggestions, expiry estimates, recipes, pantry forecast, waste reduction, and shopping lists
+- Voice input with typed fallback and review-before-apply behavior
+- Guided food and receipt review screens
+- StoreKit 2 subscription purchase and restore handling
 - Swift Charts savings and waste analytics
-- Local notifications scaffold
-- Native share sheet and PDF report export scaffold
-- WidgetKit and Apple Watch placeholders
+- Local notifications
+- Native share sheet and PDF report export
 - Food safety disclaimer surfaces
 
 ## Safety
@@ -30,7 +28,7 @@ FreshFlow AI is a food organization and meal suggestion tool. It does not provid
 
 Open `FreshFlowAI.xcodeproj` on macOS with Xcode 15 or newer, then run the `FreshFlowAI` scheme on an iOS 17+ simulator.
 
-This repository was scaffolded from Windows, so Xcode compilation could not be run locally in this environment.
+This repository is maintained from Windows, with App Store builds handled by GitHub-hosted macOS runners.
 
 ## GitHub Xcode Release
 

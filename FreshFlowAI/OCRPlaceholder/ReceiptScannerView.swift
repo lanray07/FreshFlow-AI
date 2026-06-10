@@ -17,15 +17,15 @@ struct ReceiptScannerView: View {
                             Image(systemName: "doc.text.viewfinder")
                                 .font(.largeTitle)
                                 .foregroundStyle(FreshFlowTheme.deepSage)
-                            Text("OCR Receipt Scanner")
+                            Text("Receipt Item Review")
                                 .font(.title2.bold())
-                            Text("Use Vision text recognition or a backend OCR pipeline to extract groceries, then let users review corrections before inventory changes.")
+                            Text("Add or edit grocery items from a receipt, then save the reviewed list to your pantry inventory.")
                                 .font(.subheadline)
                                 .foregroundStyle(.secondary)
                         }
                     }
 
-                    PremiumActionButton(title: isScanning ? "Scanning..." : "Run Mock OCR", systemImage: "text.viewfinder") {
+                    PremiumActionButton(title: isScanning ? "Preparing items..." : "Suggest Common Groceries", systemImage: "text.viewfinder") {
                         isScanning = true
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                             extractedItems = ["Apples", "Eggs", "Greek yogurt", "Rice", "Tomatoes"]
@@ -67,7 +67,7 @@ struct ReceiptScannerView: View {
                 .padding(20)
             }
             .background(FreshFlowTheme.pageGradient.ignoresSafeArea())
-            .navigationTitle("Receipt Scanner")
+            .navigationTitle("Receipt Review")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") { dismiss() }

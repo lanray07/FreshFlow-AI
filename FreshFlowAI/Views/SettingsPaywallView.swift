@@ -103,11 +103,12 @@ private struct SettingsRow: View {
 struct PaywallView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var selectedPlan: SubscriptionPlan = .premiumYearly
+    @State private var subscriptionStore = SubscriptionStore()
 
     private let plans: [(SubscriptionPlan, String, String)] = [
-        (.premiumMonthly, "Premium Monthly", "GBP 7.99"),
-        (.premiumYearly, "Premium Yearly", "GBP 59.99"),
-        (.familyMonthly, "Family Monthly", "GBP 14.99")
+        (.premiumMonthly, "Premium Monthly", "GBP 7.99 / month"),
+        (.premiumYearly, "Premium Yearly", "GBP 59.99 / year"),
+        (.familyMonthly, "Family Monthly", "GBP 14.99 / month")
     ]
 
     var body: some View {
@@ -127,7 +128,7 @@ struct PaywallView: View {
                             ForEach(Array(plans.enumerated()), id: \.offset) { _, entry in
                                 let plan = entry.0
                                 let title = entry.1
-                                let price = entry.2
+                                let fallbackPrice = entry.2
                                 Button {
                                     selectedPlan = plan
                                 } label: {
@@ -135,7 +136,7 @@ struct PaywallView: View {
                                         VStack(alignment: .leading) {
                                             Text(title)
                                                 .font(.headline)
-                                            Text(price)
+                                            Text(subscriptionStore.displayPrice(for: plan, fallback: fallbackPrice))
                                                 .font(.caption)
                                                 .foregroundStyle(.secondary)
                                         }
@@ -154,7 +155,7 @@ struct PaywallView: View {
                     FreshFlowCard {
                         VStack(alignment: .leading, spacing: 10) {
                             Label("Unlimited inventory", systemImage: "checkmark.seal.fill")
-                            Label("AI fridge scans", systemImage: "camera.fill")
+                            Label("Guided fridge and receipt reviews", systemImage: "camera.fill")
                             Label("Recipe generator", systemImage: "fork.knife")
                             Label("Waste analytics", systemImage: "chart.bar.fill")
                             Label("Pantry forecast", systemImage: "calendar.badge.clock")
@@ -163,18 +164,51 @@ struct PaywallView: View {
                         .foregroundStyle(FreshFlowTheme.charcoal)
                     }
 
-                    PremiumActionButton(title: "Continue with \(selectedPlan.rawValue)", systemImage: "sparkles") {
-                        dismiss()
+                    if let errorMessage = subscriptionStore.errorMessage {
+                        Text(errorMessage)
+                            .font(.footnote)
+                            .foregroundStyle(FreshFlowTheme.clay)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
+
+                    PremiumActionButton(
+                        title: subscriptionStore.isLoading ? "Working..." : "Continue - \(subscriptionStore.displayPrice(for: selectedPlan, fallback: fallbackPrice(for: selectedPlan)))",
+                        systemImage: "sparkles"
+                    ) {
+                        Task {
+                            await subscriptionStore.purchase(selectedPlan)
+                            if subscriptionStore.currentPlan == selectedPlan {
+                                dismiss()
+                            }
+                        }
+                    }
+                    .disabled(subscriptionStore.isLoading)
+
+                    Button {
+                        Task { await subscriptionStore.restorePurchases() }
+                    } label: {
+                        Label("Restore purchases", systemImage: "arrow.clockwise")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.bordered)
+                    .disabled(subscriptionStore.isLoading)
                 }
                 .padding(20)
             }
             .background(FreshFlowTheme.pageGradient.ignoresSafeArea())
+            .task {
+                await subscriptionStore.loadProducts()
+                await subscriptionStore.refreshEntitlements()
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Close") { dismiss() }
                 }
             }
         }
+    }
+
+    private func fallbackPrice(for plan: SubscriptionPlan) -> String {
+        plans.first { $0.0 == plan }?.2 ?? "Subscription"
     }
 }

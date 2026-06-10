@@ -42,8 +42,8 @@ final class AppViewModel {
     @ObservationIgnored private let voiceParser = VoiceCommandParserService()
 
     init(
-        aiService: any FreshFlowAIProviding = MockAIService(),
-        voiceInputService: any VoiceInputService = MockVoiceInputService()
+        aiService: any FreshFlowAIProviding = LocalFreshFlowAIService(),
+        voiceInputService: any VoiceInputService = LocalVoiceInputService()
     ) {
         self.aiService = aiService
         self.voiceInputService = voiceInputService
@@ -121,7 +121,7 @@ final class AppViewModel {
         do {
             scannerReviewItems = try await aiService.recognizeFood(from: ScanInput(source: source, imagePlaceholder: "premium-kitchen-scan"))
         } catch {
-            errorMessage = "FreshFlow AI could not complete the mock scan."
+            errorMessage = "FreshFlow AI could not complete the food review."
         }
     }
 

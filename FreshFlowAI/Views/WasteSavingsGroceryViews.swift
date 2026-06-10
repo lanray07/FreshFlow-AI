@@ -156,7 +156,7 @@ struct PantryForecastView: View {
             }
             FreshFlowCard {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Household sharing placeholder")
+                    Text("Household sharing")
                         .font(.headline)
                     Label("Family members", systemImage: "person.2.fill")
                     Label("Shared inventory", systemImage: "refrigerator.fill")

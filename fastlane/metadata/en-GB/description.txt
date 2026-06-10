@@ -1,0 +1,17 @@
+FreshFlow AI helps households know what to eat before it expires. Track ingredients across your fridge, freezer, pantry, and leftovers, then turn the food you already own into practical meal ideas and smarter grocery plans.
+
+FreshFlow AI helps you:
+
+- Track pantry, fridge, freezer, and leftover inventory
+- Review freshness and expiry-risk indicators
+- Add groceries manually, with voice input, or through guided food and receipt reviews
+- Generate recipe ideas from available and expiring ingredients
+- Build low-waste shopping lists and restock plans
+- Estimate inventory value, waste risk, and monthly savings
+- Export and share simple household progress reports
+
+Premium subscriptions unlock higher inventory capacity, guided review workflows, recipe generation, waste analytics, pantry forecasts, grocery intelligence, and premium reports.
+
+FreshFlow AI is designed for families, busy professionals, students, meal preppers, and budget-conscious households that want a calmer, smarter kitchen.
+
+Important: FreshFlow AI is a food organization and meal suggestion tool. It does not provide medical nutrition advice, diagnose health conditions, certify food safety, guarantee food freshness, or replace official food safety guidance. Always verify food safety independently and follow official guidance before consuming food.

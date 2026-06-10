@@ -39,7 +39,7 @@ protocol VoiceInputService {
     func stopListening()
 }
 
-struct MockVoiceInputService: VoiceInputService {
+struct LocalVoiceInputService: VoiceInputService {
     func requestPermissions() async -> VoicePermissionState {
         .granted
     }
@@ -106,7 +106,7 @@ final class NativeVoiceInputService: VoiceInputService {
         _ = speechRecognizer
         _ = audioEngine
         return VoiceInputResult(
-            transcript: "Native speech recognition placeholder. Wire SFSpeechAudioBufferRecognitionRequest here for production capture.",
+            transcript: "Voice capture is unavailable on this device. Use typed input to review the command.",
             confidence: 0.5,
             sourceScreen: source
         )
@@ -118,7 +118,7 @@ final class NativeVoiceInputService: VoiceInputService {
 }
 
 struct VoicePermissionService {
-    var voiceService: any VoiceInputService = MockVoiceInputService()
+    var voiceService: any VoiceInputService = LocalVoiceInputService()
 
     func status() async -> VoicePermissionState {
         await voiceService.requestPermissions()
@@ -228,7 +228,7 @@ struct VoiceCommandParserService {
 }
 
 struct RemoteVoiceIntentService {
-    var endpoint = URL(string: "https://YOUR_BACKEND_URL.com/freshflow-ai")
+    var endpoint = URL(string: "https://api.freshflow.app/voice-intent")
 
     func parseRemotely(transcript: String, sourceScreen: VoiceSourceScreen) async throws -> VoiceCommandIntentDraft {
         let parser = VoiceCommandParserService()

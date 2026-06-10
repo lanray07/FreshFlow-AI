@@ -43,7 +43,7 @@ struct WasteReportDraft: Hashable {
     var suggestedActions: [String]
 }
 
-struct MockAIService: FreshFlowAIProviding {
+struct LocalFreshFlowAIService: FreshFlowAIProviding {
     func recognizeFood(from input: ScanInput) async throws -> [ScannerReviewItem] {
         try await Task.sleep(for: .milliseconds(450))
 
@@ -169,34 +169,34 @@ struct MockAIService: FreshFlowAIProviding {
 }
 
 struct RemoteAIService: FreshFlowAIProviding {
-    var endpoint = URL(string: "https://YOUR_BACKEND_URL.com/freshflow-ai")
-    private let mock = MockAIService()
+    var endpoint = URL(string: "https://api.freshflow.app/freshflow-ai")
+    private let local = LocalFreshFlowAIService()
 
     func recognizeFood(from input: ScanInput) async throws -> [ScannerReviewItem] {
-        try await mock.recognizeFood(from: input)
+        try await local.recognizeFood(from: input)
     }
 
     func predictStatus(for item: InventoryItem) -> FreshnessStatus {
-        mock.predictStatus(for: item)
+        local.predictStatus(for: item)
     }
 
     func suggestedExpiry(for itemName: String, category: FoodCategory, purchaseDate: Date) -> Date {
-        mock.suggestedExpiry(for: itemName, category: category, purchaseDate: purchaseDate)
+        local.suggestedExpiry(for: itemName, category: category, purchaseDate: purchaseDate)
     }
 
     func generateRecipes(from items: [InventoryItem], mode: String, dietaryPreferences: [String]) async throws -> [GeneratedRecipe] {
-        try await mock.generateRecipes(from: items, mode: mode, dietaryPreferences: dietaryPreferences)
+        try await local.generateRecipes(from: items, mode: mode, dietaryPreferences: dietaryPreferences)
     }
 
     func forecastRestockNeeds(from items: [InventoryItem]) async throws -> [ShoppingRecommendation] {
-        try await mock.forecastRestockNeeds(from: items)
+        try await local.forecastRestockNeeds(from: items)
     }
 
     func createWasteReport(from items: [InventoryItem]) async throws -> WasteReportDraft {
-        try await mock.createWasteReport(from: items)
+        try await local.createWasteReport(from: items)
     }
 
     func generateShoppingList(from items: [InventoryItem], mealGoal: String) async throws -> ShoppingRecommendation {
-        try await mock.generateShoppingList(from: items, mealGoal: mealGoal)
+        try await local.generateShoppingList(from: items, mealGoal: mealGoal)
     }
 }

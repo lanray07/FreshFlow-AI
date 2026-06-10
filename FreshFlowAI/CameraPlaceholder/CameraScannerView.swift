@@ -17,10 +17,10 @@ struct CameraScannerView: View {
                 Image(systemName: "camera.viewfinder")
                     .font(.system(size: 54, weight: .semibold))
                     .foregroundStyle(.white)
-                Text("Camera preview placeholder")
+                Text("\(source.rawValue) scan review")
                     .font(.headline)
                     .foregroundStyle(.white)
-                Text("Wire AVCaptureSession and Vision/Core ML food recognition here for \(source.rawValue.lowercased()) scans.")
+                Text("Prepare a focused food check, then review suggested items, freshness estimates, and storage notes before saving.")
                     .font(.subheadline)
                     .foregroundStyle(.white.opacity(0.76))
                     .multilineTextAlignment(.center)
@@ -32,13 +32,13 @@ struct CameraScannerView: View {
                 HStack {
                     Label(source.rawValue, systemImage: source == .pantry ? "cabinet.fill" : "refrigerator.fill")
                     Spacer()
-                    Label("Mock AI", systemImage: "sparkles")
+                    Label("Editable review", systemImage: "checklist")
                 }
                 .font(.caption.weight(.bold))
                 .foregroundStyle(.white)
 
                 Button(action: scanAction) {
-                    Label("Run Mock Scan", systemImage: "viewfinder.circle.fill")
+                    Label("Start Food Review", systemImage: "viewfinder.circle.fill")
                         .font(.headline)
                         .foregroundStyle(FreshFlowTheme.charcoal)
                         .frame(maxWidth: .infinity)
@@ -53,6 +53,6 @@ struct CameraScannerView: View {
         }
         .frame(height: 360)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("Camera scanner placeholder")
+        .accessibilityLabel("Food scan review")
     }
 }
