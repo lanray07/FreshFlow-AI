@@ -84,7 +84,7 @@ struct OnboardingView: View {
 
     private var hero: some View {
         VStack(alignment: .leading, spacing: 18) {
-            FoodPhotographyPlaceholder(category: .produce, size: 94)
+            FoodCategoryArtwork(category: .produce, size: 94)
             Text("FreshFlow AI")
                 .font(.system(.largeTitle, design: .rounded, weight: .bold))
                 .foregroundStyle(FreshFlowTheme.charcoal)

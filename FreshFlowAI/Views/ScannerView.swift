@@ -81,7 +81,7 @@ private struct ScannerReviewCard: View {
         FreshFlowCard {
             VStack(alignment: .leading, spacing: 12) {
                 HStack(spacing: 12) {
-                    FoodPhotographyPlaceholder(category: item.category, size: 58)
+                    FoodCategoryArtwork(category: item.category, size: 58)
                     VStack(alignment: .leading, spacing: 5) {
                         Text(item.itemName)
                             .font(.headline)

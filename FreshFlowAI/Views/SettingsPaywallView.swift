@@ -51,8 +51,8 @@ struct SettingsView: View {
                     VStack(alignment: .leading, spacing: 12) {
                         Text("Legal and safety")
                             .font(.headline)
-                        SettingsRow(title: "Privacy Policy", value: "Placeholder", systemImage: "lock.shield.fill")
-                        SettingsRow(title: "Terms", value: "Placeholder", systemImage: "doc.text.fill")
+                        LegalLinkRow(title: "Privacy Policy", destination: FreshFlowLegalLinks.privacyPolicy, systemImage: "lock.shield.fill")
+                        LegalLinkRow(title: "Terms of Use", destination: FreshFlowLegalLinks.termsOfUse, systemImage: "doc.text.fill")
                         SafetyDisclaimerView()
                     }
                 }
@@ -100,6 +100,30 @@ private struct SettingsRow: View {
     }
 }
 
+private struct LegalLinkRow: View {
+    var title: String
+    var destination: URL
+    var systemImage: String
+
+    var body: some View {
+        Link(destination: destination) {
+            HStack(spacing: 12) {
+                Image(systemName: systemImage)
+                    .foregroundStyle(.white)
+                    .frame(width: 34, height: 34)
+                    .background(FreshFlowTheme.sage, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                Text(title)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(FreshFlowTheme.charcoal)
+                Spacer()
+                Label("Open", systemImage: "arrow.up.right.square")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(FreshFlowTheme.deepSage)
+            }
+        }
+    }
+}
+
 struct PaywallView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var selectedPlan: SubscriptionPlan = .premiumYearly
@@ -115,7 +139,7 @@ struct PaywallView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 22) {
-                    FoodPhotographyPlaceholder(category: .produce, size: 100)
+                    FoodCategoryArtwork(category: .produce, size: 100)
                     Text("Unlock FreshFlow Premium")
                         .font(.largeTitle.bold())
                         .foregroundStyle(FreshFlowTheme.charcoal)
@@ -162,6 +186,24 @@ struct PaywallView: View {
                         }
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(FreshFlowTheme.charcoal)
+                    }
+
+                    FreshFlowCard {
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text("Subscription terms")
+                                .font(.headline)
+                                .foregroundStyle(FreshFlowTheme.charcoal)
+                            Text("Subscriptions renew automatically unless canceled at least 24 hours before the end of the current period. Manage or cancel subscriptions in your App Store account settings.")
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                            HStack(spacing: 16) {
+                                Link("Privacy Policy", destination: FreshFlowLegalLinks.privacyPolicy)
+                                Link("Terms of Use", destination: FreshFlowLegalLinks.termsOfUse)
+                            }
+                            .font(.footnote.weight(.semibold))
+                            .foregroundStyle(FreshFlowTheme.deepSage)
+                        }
                     }
 
                     if let errorMessage = subscriptionStore.errorMessage {

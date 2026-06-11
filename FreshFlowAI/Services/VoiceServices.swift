@@ -33,10 +33,25 @@ struct VoiceInputResult: Hashable {
     var sourceScreen: VoiceSourceScreen
 }
 
+@MainActor
 protocol VoiceInputService {
     func requestPermissions() async -> VoicePermissionState
     func startListening(source: VoiceSourceScreen) async throws -> VoiceInputResult
     func stopListening()
+}
+
+enum VoiceInputError: LocalizedError {
+    case unavailable
+    case noSpeechDetected
+
+    var errorDescription: String? {
+        switch self {
+        case .unavailable:
+            "Voice input is unavailable on this device."
+        case .noSpeechDetected:
+            "No speech was detected. Try again or use typed input."
+        }
+    }
 }
 
 struct LocalVoiceInputService: VoiceInputService {
@@ -74,9 +89,15 @@ struct LocalVoiceInputService: VoiceInputService {
     func stopListening() {}
 }
 
+@MainActor
 final class NativeVoiceInputService: VoiceInputService {
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
     private let audioEngine = AVAudioEngine()
+    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    private var recognitionTask: SFSpeechRecognitionTask?
+    private var continuation: CheckedContinuation<VoiceInputResult, Error>?
+    private var latestTranscript = ""
+    private var hasAudioTap = false
 
     func requestPermissions() async -> VoicePermissionState {
         let speechStatus = await withCheckedContinuation { continuation in
@@ -103,22 +124,109 @@ final class NativeVoiceInputService: VoiceInputService {
     }
 
     func startListening(source: VoiceSourceScreen) async throws -> VoiceInputResult {
-        _ = speechRecognizer
-        _ = audioEngine
-        return VoiceInputResult(
-            transcript: "Voice capture is unavailable on this device. Use typed input to review the command.",
-            confidence: 0.5,
-            sourceScreen: source
-        )
+        guard let speechRecognizer, speechRecognizer.isAvailable else {
+            throw VoiceInputError.unavailable
+        }
+
+        cleanupAudio(cancelTask: true)
+        latestTranscript = ""
+
+        let audioSession = AVAudioSession.sharedInstance()
+        try audioSession.setCategory(.record, mode: .measurement, options: [.duckOthers])
+        try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+
+        let request = SFSpeechAudioBufferRecognitionRequest()
+        request.shouldReportPartialResults = true
+        recognitionRequest = request
+
+        let inputNode = audioEngine.inputNode
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
+            request.append(buffer)
+        }
+        hasAudioTap = true
+
+        audioEngine.prepare()
+        try audioEngine.start()
+
+        return try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<VoiceInputResult, Error>) in
+                self.continuation = continuation
+                self.recognitionTask = speechRecognizer.recognitionTask(with: request) { [weak self] result, error in
+                    Task { @MainActor in
+                        guard let self else { return }
+                        if let result {
+                            self.latestTranscript = result.bestTranscription.formattedString
+                            if result.isFinal {
+                                self.finishRecognition(source: source)
+                            }
+                        }
+                        if let error {
+                            self.failRecognition(error)
+                        }
+                    }
+                }
+
+                Task { [weak self] in
+                    try? await Task.sleep(for: .seconds(5))
+                    await MainActor.run {
+                        self?.finishRecognition(source: source)
+                    }
+                }
+            }
+        } onCancel: {
+            Task { @MainActor in
+                self.stopListening()
+            }
+        }
     }
 
     func stopListening() {
-        audioEngine.stop()
+        cleanupAudio(cancelTask: true)
+    }
+
+    private func finishRecognition(source: VoiceSourceScreen) {
+        guard let continuation else { return }
+        self.continuation = nil
+        let transcript = latestTranscript.trimmingCharacters(in: .whitespacesAndNewlines)
+        cleanupAudio(cancelTask: false)
+
+        guard !transcript.isEmpty else {
+            continuation.resume(throwing: VoiceInputError.noSpeechDetected)
+            return
+        }
+
+        continuation.resume(returning: VoiceInputResult(transcript: transcript, confidence: 0.84, sourceScreen: source))
+    }
+
+    private func failRecognition(_ error: Error) {
+        guard let continuation else { return }
+        self.continuation = nil
+        cleanupAudio(cancelTask: false)
+        continuation.resume(throwing: error)
+    }
+
+    private func cleanupAudio(cancelTask: Bool) {
+        if audioEngine.isRunning {
+            audioEngine.stop()
+        }
+        if hasAudioTap {
+            audioEngine.inputNode.removeTap(onBus: 0)
+            hasAudioTap = false
+        }
+        recognitionRequest?.endAudio()
+        if cancelTask {
+            recognitionTask?.cancel()
+        }
+        recognitionRequest = nil
+        recognitionTask = nil
+        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
     }
 }
 
+@MainActor
 struct VoicePermissionService {
-    var voiceService: any VoiceInputService = LocalVoiceInputService()
+    var voiceService: any VoiceInputService = NativeVoiceInputService()
 
     func status() async -> VoicePermissionState {
         await voiceService.requestPermissions()

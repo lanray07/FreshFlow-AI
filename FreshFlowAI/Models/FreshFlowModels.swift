@@ -176,13 +176,13 @@ final class InventoryItem {
 @Model
 final class FridgeScan {
     @Attribute(.unique) var id: UUID
-    var imagePlaceholder: String
+    var imageReference: String
     var identifiedItems: [String]
     var createdAt: Date
 
-    init(id: UUID = UUID(), imagePlaceholder: String, identifiedItems: [String], createdAt: Date = .now) {
+    init(id: UUID = UUID(), imageReference: String, identifiedItems: [String], createdAt: Date = .now) {
         self.id = id
-        self.imagePlaceholder = imagePlaceholder
+        self.imageReference = imageReference
         self.identifiedItems = identifiedItems
         self.createdAt = createdAt
     }

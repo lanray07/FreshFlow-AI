@@ -89,7 +89,7 @@ struct DashboardView: View {
         ZStack(alignment: .bottomLeading) {
             HStack {
                 Spacer()
-                FoodPhotographyPlaceholder(category: .produce, size: 154)
+                FoodCategoryArtwork(category: .produce, size: 154)
                     .padding(.trailing, 10)
             }
             VStack(alignment: .leading, spacing: 10) {

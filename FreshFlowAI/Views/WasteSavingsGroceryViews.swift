@@ -38,8 +38,8 @@ struct InsightsHubView: View {
                     ShareableSavingsCardsView()
                 }
 
-                WidgetPlaceholderView()
-                WatchPlaceholderView()
+                DailyKitchenSummaryView()
+                KitchenReminderSummaryView()
             }
             .padding(20)
         }

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct FoodPhotographyPlaceholder: View {
+struct FoodCategoryArtwork: View {
     var category: FoodCategory
     var size: CGFloat = 72
 

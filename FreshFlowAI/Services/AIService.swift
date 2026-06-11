@@ -2,7 +2,7 @@ import Foundation
 
 struct ScanInput: Hashable {
     var source: StorageLocation
-    var imagePlaceholder: String
+    var imageReference: String
 }
 
 protocol FoodRecognitionService {

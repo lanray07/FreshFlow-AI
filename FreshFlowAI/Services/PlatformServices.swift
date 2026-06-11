@@ -5,6 +5,11 @@ import SwiftUI
 import UIKit
 import UserNotifications
 
+enum FreshFlowLegalLinks {
+    static let privacyPolicy = URL(string: "https://github.com/lanray07/FreshFlow-AI/blob/main/PRIVACY_POLICY.md")!
+    static let termsOfUse = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
+}
+
 @MainActor
 @Observable
 final class SubscriptionStore {
@@ -33,7 +38,8 @@ final class SubscriptionStore {
     }
 
     func displayPrice(for plan: SubscriptionPlan, fallback: String) -> String {
-        product(for: plan)?.displayPrice ?? fallback
+        guard let product = product(for: plan) else { return fallback }
+        return "\(product.displayPrice) \(billingPeriodLabel(for: plan))"
     }
 
     func purchase(_ plan: SubscriptionPlan) async {
@@ -93,6 +99,17 @@ final class SubscriptionStore {
     private func product(for plan: SubscriptionPlan) -> Product? {
         guard let productID = productIDByPlan[plan] else { return nil }
         return products.first { $0.id == productID }
+    }
+
+    private func billingPeriodLabel(for plan: SubscriptionPlan) -> String {
+        switch plan {
+        case .premiumMonthly, .familyMonthly:
+            "/ month"
+        case .premiumYearly:
+            "/ year"
+        case .free:
+            ""
+        }
     }
 
     private func subscriptionPlan(for productID: String) -> SubscriptionPlan {

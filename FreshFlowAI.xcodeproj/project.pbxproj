@@ -16,7 +16,7 @@
 		B00100000000000000000007 /* PlatformServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000007 /* PlatformServices.swift */; };
 		B00100000000000000000008 /* FreshFlowComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000008 /* FreshFlowComponents.swift */; };
 		B00100000000000000000009 /* VoiceComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000009 /* VoiceComponents.swift */; };
-		B00100000000000000000010 /* FoodPhotographyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000010 /* FoodPhotographyPlaceholder.swift */; };
+		B00100000000000000000010 /* FoodCategoryArtwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000010 /* FoodCategoryArtwork.swift */; };
 		B00100000000000000000011 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000011 /* AppRootView.swift */; };
 		B00100000000000000000012 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000012 /* OnboardingView.swift */; };
 		B00100000000000000000013 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000013 /* DashboardView.swift */; };
@@ -27,8 +27,8 @@
 		B00100000000000000000018 /* RecipeAndMealViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000018 /* RecipeAndMealViews.swift */; };
 		B00100000000000000000019 /* WasteSavingsGroceryViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000019 /* WasteSavingsGroceryViews.swift */; };
 		B00100000000000000000020 /* SettingsPaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000020 /* SettingsPaywallView.swift */; };
-		B00100000000000000000021 /* WidgetPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000021 /* WidgetPlaceholderView.swift */; };
-		B00100000000000000000022 /* WatchPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000022 /* WatchPlaceholderView.swift */; };
+		B00100000000000000000021 /* DailyKitchenSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000021 /* DailyKitchenSummaryView.swift */; };
+		B00100000000000000000022 /* KitchenReminderSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000022 /* KitchenReminderSummaryView.swift */; };
 		B00100000000000000000023 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000023 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +42,7 @@
 		A00100000000000000000007 /* PlatformServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformServices.swift; sourceTree = "<group>"; };
 		A00100000000000000000008 /* FreshFlowComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreshFlowComponents.swift; sourceTree = "<group>"; };
 		A00100000000000000000009 /* VoiceComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceComponents.swift; sourceTree = "<group>"; };
-		A00100000000000000000010 /* FoodPhotographyPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPhotographyPlaceholder.swift; sourceTree = "<group>"; };
+		A00100000000000000000010 /* FoodCategoryArtwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCategoryArtwork.swift; sourceTree = "<group>"; };
 		A00100000000000000000011 /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
 		A00100000000000000000012 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		A00100000000000000000013 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -53,8 +53,8 @@
 		A00100000000000000000018 /* RecipeAndMealViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAndMealViews.swift; sourceTree = "<group>"; };
 		A00100000000000000000019 /* WasteSavingsGroceryViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasteSavingsGroceryViews.swift; sourceTree = "<group>"; };
 		A00100000000000000000020 /* SettingsPaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPaywallView.swift; sourceTree = "<group>"; };
-		A00100000000000000000021 /* WidgetPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPlaceholderView.swift; sourceTree = "<group>"; };
-		A00100000000000000000022 /* WatchPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchPlaceholderView.swift; sourceTree = "<group>"; };
+		A00100000000000000000021 /* DailyKitchenSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyKitchenSummaryView.swift; sourceTree = "<group>"; };
+		A00100000000000000000022 /* KitchenReminderSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenReminderSummaryView.swift; sourceTree = "<group>"; };
 		A00100000000000000000023 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		PROD00000000000000000001 /* FreshFlowAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreshFlowAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -95,12 +95,12 @@
 				GROUP00000000000000000006 /* Services */,
 				GROUP00000000000000000007 /* Components */,
 				GROUP00000000000000000008 /* Views */,
-				GROUP00000000000000000009 /* CameraPlaceholder */,
-				GROUP00000000000000000010 /* OCRPlaceholder */,
-				GROUP00000000000000000011 /* WidgetsPlaceholder */,
-				GROUP00000000000000000012 /* WatchPlaceholder */,
+				GROUP00000000000000000009 /* FoodScanner */,
+				GROUP00000000000000000010 /* ReceiptReview */,
+				GROUP00000000000000000011 /* KitchenSummary */,
+				GROUP00000000000000000012 /* ReminderSummary */,
 				GROUP00000000000000000013 /* Resources */,
-				GROUP00000000000000000014 /* FoodAssetsPlaceholder */,
+				GROUP00000000000000000014 /* FoodArtwork */,
 			);
 			path = FreshFlowAI;
 			sourceTree = "<group>";
@@ -151,28 +151,28 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		GROUP00000000000000000009 /* CameraPlaceholder */ = {
+		GROUP00000000000000000009 /* FoodScanner */ = {
 			isa = PBXGroup;
 			children = (A00100000000000000000016 /* CameraScannerView.swift */);
-			path = CameraPlaceholder;
+			path = FoodScanner;
 			sourceTree = "<group>";
 		};
-		GROUP00000000000000000010 /* OCRPlaceholder */ = {
+		GROUP00000000000000000010 /* ReceiptReview */ = {
 			isa = PBXGroup;
 			children = (A00100000000000000000017 /* ReceiptScannerView.swift */);
-			path = OCRPlaceholder;
+			path = ReceiptReview;
 			sourceTree = "<group>";
 		};
-		GROUP00000000000000000011 /* WidgetsPlaceholder */ = {
+		GROUP00000000000000000011 /* KitchenSummary */ = {
 			isa = PBXGroup;
-			children = (A00100000000000000000021 /* WidgetPlaceholderView.swift */);
-			path = WidgetsPlaceholder;
+			children = (A00100000000000000000021 /* DailyKitchenSummaryView.swift */);
+			path = KitchenSummary;
 			sourceTree = "<group>";
 		};
-		GROUP00000000000000000012 /* WatchPlaceholder */ = {
+		GROUP00000000000000000012 /* ReminderSummary */ = {
 			isa = PBXGroup;
-			children = (A00100000000000000000022 /* WatchPlaceholderView.swift */);
-			path = WatchPlaceholder;
+			children = (A00100000000000000000022 /* KitchenReminderSummaryView.swift */);
+			path = ReminderSummary;
 			sourceTree = "<group>";
 		};
 		GROUP00000000000000000013 /* Resources */ = {
@@ -184,10 +184,10 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		GROUP00000000000000000014 /* FoodAssetsPlaceholder */ = {
+		GROUP00000000000000000014 /* FoodArtwork */ = {
 			isa = PBXGroup;
-			children = (A00100000000000000000010 /* FoodPhotographyPlaceholder.swift */);
-			path = FoodAssetsPlaceholder;
+			children = (A00100000000000000000010 /* FoodCategoryArtwork.swift */);
+			path = FoodArtwork;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,7 +268,7 @@
 				B00100000000000000000007 /* PlatformServices.swift in Sources */,
 				B00100000000000000000008 /* FreshFlowComponents.swift in Sources */,
 				B00100000000000000000009 /* VoiceComponents.swift in Sources */,
-				B00100000000000000000010 /* FoodPhotographyPlaceholder.swift in Sources */,
+				B00100000000000000000010 /* FoodCategoryArtwork.swift in Sources */,
 				B00100000000000000000011 /* AppRootView.swift in Sources */,
 				B00100000000000000000012 /* OnboardingView.swift in Sources */,
 				B00100000000000000000013 /* DashboardView.swift in Sources */,
@@ -279,8 +279,8 @@
 				B00100000000000000000018 /* RecipeAndMealViews.swift in Sources */,
 				B00100000000000000000019 /* WasteSavingsGroceryViews.swift in Sources */,
 				B00100000000000000000020 /* SettingsPaywallView.swift in Sources */,
-				B00100000000000000000021 /* WidgetPlaceholderView.swift in Sources */,
-				B00100000000000000000022 /* WatchPlaceholderView.swift in Sources */,
+				B00100000000000000000021 /* DailyKitchenSummaryView.swift in Sources */,
+				B00100000000000000000022 /* KitchenReminderSummaryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +350,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -382,7 +382,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

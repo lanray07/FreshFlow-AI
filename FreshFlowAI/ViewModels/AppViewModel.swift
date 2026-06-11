@@ -43,7 +43,7 @@ final class AppViewModel {
 
     init(
         aiService: any FreshFlowAIProviding = LocalFreshFlowAIService(),
-        voiceInputService: any VoiceInputService = LocalVoiceInputService()
+        voiceInputService: any VoiceInputService = NativeVoiceInputService()
     ) {
         self.aiService = aiService
         self.voiceInputService = voiceInputService
@@ -119,7 +119,7 @@ final class AppViewModel {
         defer { isLoading = false }
 
         do {
-            scannerReviewItems = try await aiService.recognizeFood(from: ScanInput(source: source, imagePlaceholder: "premium-kitchen-scan"))
+            scannerReviewItems = try await aiService.recognizeFood(from: ScanInput(source: source, imageReference: "food-review-session"))
         } catch {
             errorMessage = "FreshFlow AI could not complete the food review."
         }
@@ -187,7 +187,7 @@ final class AppViewModel {
             lastVoiceIntent = intent
             return intent
         } catch {
-            errorMessage = "Voice input could not start."
+            errorMessage = (error as? LocalizedError)?.errorDescription ?? "Voice input could not start. Typed input remains available."
             return nil
         }
     }

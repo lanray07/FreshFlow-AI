@@ -25,7 +25,7 @@ struct RecipeHubView: View {
                 }
                 .pickerStyle(.segmented)
 
-                FoodPhotographyPlaceholder(category: .produce, size: 96)
+                FoodCategoryArtwork(category: .produce, size: 96)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 10)
 

@@ -15,3 +15,6 @@ Premium subscriptions unlock higher inventory capacity, guided review workflows,
 FreshFlow AI is designed for families, busy professionals, students, meal preppers, and budget-conscious households that want a calmer, smarter kitchen.
 
 Important: FreshFlow AI is a food organization and meal suggestion tool. It does not provide medical nutrition advice, diagnose health conditions, certify food safety, guarantee food freshness, or replace official food safety guidance. Always verify food safety independently and follow official guidance before consuming food.
+
+Terms of Use (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Privacy Policy: https://github.com/lanray07/FreshFlow-AI/blob/main/PRIVACY_POLICY.md

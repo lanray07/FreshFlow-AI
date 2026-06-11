@@ -160,7 +160,7 @@ struct InventoryCard: View {
 
     var body: some View {
         HStack(spacing: 14) {
-            FoodPhotographyPlaceholder(category: item.categoryValue, size: 58)
+            FoodCategoryArtwork(category: item.categoryValue, size: 58)
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     Text(item.itemName)
@@ -189,7 +189,7 @@ struct RecipeCard: View {
         FreshFlowCard {
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
-                    FoodPhotographyPlaceholder(category: .produce, size: 52)
+                    FoodCategoryArtwork(category: .produce, size: 52)
                     VStack(alignment: .leading, spacing: 4) {
                         Text(recipe.title)
                             .font(.headline)
