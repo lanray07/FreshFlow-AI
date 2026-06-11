@@ -25,6 +25,7 @@ platform :ios do
       force: true,
       submit_for_review: false,
       automatic_release: true,
+      run_precheck_before_submit: false,
       platform: "ios"
     )
   end

@@ -43,10 +43,10 @@ final class AppViewModel {
 
     init(
         aiService: any FreshFlowAIProviding = LocalFreshFlowAIService(),
-        voiceInputService: any VoiceInputService = NativeVoiceInputService()
+        voiceInputService: (any VoiceInputService)? = nil
     ) {
         self.aiService = aiService
-        self.voiceInputService = voiceInputService
+        self.voiceInputService = voiceInputService ?? NativeVoiceInputService()
     }
 
     func seedIfNeeded(modelContext: ModelContext, inventory: [InventoryItem]) {
